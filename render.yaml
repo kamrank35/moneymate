@@ -1,16 +1,24 @@
+databases:
+  - name: moneymate-mongo
+    databaseName: moneymate
+    plan: free
+
 services:
   - type: web
     name: moneymate-api
-    env: node
+    runtime: node
     region: oregon
-    rootDir: server
+    directory: server
     buildCommand: npm install
     startCommand: node server.js
-    healthCheckPath: /
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: mongo_url
-        sync: false
+        fromDatabase:
+          name: moneymate-mongo
+          property: connectionString
       - key: jwt_secret
-        sync: false
+        generateValue: true
       - key: stripe_key
         sync: false
