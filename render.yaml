@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: moneymate-api
+    env: node
+    region: oregon
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: mongo_url
+        sync: false
+      - key: jwt_secret
+        sync: false
+      - key: stripe_key
+        sync: false
