@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/moneymate/static/css/main.031737db.css",
+    "main.js": "/moneymate/static/js/main.b097b3e1.js",
+    "static/js/453.d4cf2f49.chunk.js": "/moneymate/static/js/453.d4cf2f49.chunk.js",
+    "index.html": "/moneymate/index.html",
+    "main.031737db.css.map": "/moneymate/static/css/main.031737db.css.map",
+    "main.b097b3e1.js.map": "/moneymate/static/js/main.b097b3e1.js.map",
+    "453.d4cf2f49.chunk.js.map": "/moneymate/static/js/453.d4cf2f49.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.031737db.css",
+    "static/js/main.b097b3e1.js"
+  ]
+}
