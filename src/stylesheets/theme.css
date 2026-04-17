@@ -1,0 +1,63 @@
+:root {
+    --primary: #1a5f4a;
+    --primary-dark: #0d3d2f;
+    --primary-light: #2d8a6e;
+    --secondary: #f59e0b;
+    --secondary-hover: #d97706;
+    --accent: #3b82f6;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-hover: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --danger: #ef4444;
+    --danger-light: #fee2e2;
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --info: #3b82f6;
+    --info-light: #dbeafe;
+}
+
+.bg-primary{
+    background-color: var(--primary) !important;
+}
+
+.bg-secendory{
+    background-color: var(--secondary) !important;
+}
+
+.bg-ter{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+}
+
+.text-primary{
+    color: var(--primary) !important;
+}
+
+.text-secondary{
+    color: var(--secondary) !important;
+}
+.text-white{
+    color: #fff !important;
+}
+.text-black{
+    color: #000 !important;
+}
+
+.success-bg{
+    background-color: var(--success);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.error-bg{
+    background-color: var(--danger);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+}

@@ -1,38 +1,201 @@
-.App {
-  text-align: center;
+.layout{
+    display: flex;
+    padding: 20px;
+    height: 100vh;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--background);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sidebar{
+    background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 20px 16px;
+    border-radius: 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.menu-item{
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    gap: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(4px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu-item i {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+.active-menu-item{
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.active-menu-item i {
+    color: var(--primary-dark);
+}
+
+.body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: 16px 24px;
+    border-radius: 16px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header i {
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--secondary);
+    transition: transform 0.2s ease;
+}
+
+.header i:hover {
+    transform: scale(1.1);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo i {
+    font-size: 28px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.user-name {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.toggle-btn {
+    display: flex;
+    align-items: center;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.brand-logo i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.brand-name {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.content{
+    padding-top: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Avatar circle for transactions */
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Transactions header */
+.transactions-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.transactions-header p {
+    color: var(--text-secondary);
+}
+
+.mr-2 {
+    margin-right: 8px;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-success {
+    color: var(--success) !important;
+}
+
+.text-danger {
+    color: var(--danger) !important;
 }

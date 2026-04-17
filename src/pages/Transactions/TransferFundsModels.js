@@ -1,0 +1,172 @@
+import React from 'react'
+import { Modal,Form, message } from 'antd'
+import { useDispatch,useSelector } from 'react-redux'
+import { TransferFunds } from '../../apicalls/transactions'
+import { ShowLoading, HideLoading } from "../../redux/loadersSlice"
+import { motion, AnimatePresence } from 'framer-motion'
+import UserSearch from '../../components/UserSearch'
+
+function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel,reloadData} ) {
+    const {user} = useSelector(state => state.users)
+    const [selectedReceiver, setSelectedReceiver] = React.useState(null)
+    const [form] = Form.useForm()
+    const dispatch = useDispatch()
+    const [transferring, setTransferring] = React.useState(false)
+
+    const handleUserSelect = (user) => {
+        setSelectedReceiver(user)
+    }
+
+    const onFinish = async(values) => {
+        if (!selectedReceiver) {
+            message.error('Please select a recipient');
+            return;
+        }
+        try {
+            setTransferring(true)
+            dispatch(ShowLoading())
+            const payload = {
+                sender: user._id,
+                receiver: selectedReceiver._id,
+                amount: parseFloat(values.amount),
+                reference: values.reference || "no reference",
+                status: "success",
+                type: "transfer"
+            }
+            const response = await TransferFunds(payload)
+            if(response.success){
+                reloadData();
+                setShowTransferFundsModel(false)
+                setSelectedReceiver(null)
+                form.resetFields()
+                message.success(response.message)
+            }
+            else{
+                message.error(response.message)
+            }
+            dispatch(HideLoading())
+            setTransferring(false)
+        } catch (error) {
+            message.error(error.message)
+            dispatch(HideLoading())
+            setTransferring(false)
+        }
+    }
+
+    const handleClose = () => {
+        setShowTransferFundsModel(false)
+        setSelectedReceiver(null)
+        form.resetFields()
+    }
+
+  return (
+    <div>
+
+        <Modal
+            title="Transfer Funds"
+            open={showTransferFundsModel}
+            onCancel={handleClose}
+            footer={null}
+            closable={!transferring}
+            maskClosable={!transferring}
+            width={480}
+        >
+            <Form layout='vertical' form={form} onFinish={onFinish}>
+                <Form.Item label="Select Recipient">
+                    <UserSearch
+                        onSelect={handleUserSelect}
+                        disabled={transferring}
+                    />
+                </Form.Item>
+
+                <AnimatePresence>
+                {selectedReceiver && (
+                    <motion.div
+                        className='success-bg mb-3'
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                    >
+                        <i className="ri-check-line mr-1"></i>
+                        Recipient: {selectedReceiver.firstName} {selectedReceiver.lastName}
+                    </motion.div>
+                )}
+                </AnimatePresence>
+
+                <Form.Item
+                    label="Amount"
+                    name="amount"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your amount!"
+                        },
+                        {
+                            validator: (_, value) => {
+                                if (value && parseFloat(value) <= 0) {
+                                    return Promise.reject('Amount must be greater than 0');
+                                }
+                                if (value && parseFloat(value) > user.balance) {
+                                    return Promise.reject('Insufficient Balance');
+                                }
+                                return Promise.resolve();
+                            }
+                        }
+                    ]}
+                >
+                    <input
+                        type="number"
+                        disabled={transferring}
+                        placeholder="Enter amount"
+                        min="1"
+                    />
+                </Form.Item>
+
+                <Form.Item label="Reference (Optional)" name="reference">
+                    <textarea
+                        type="text"
+                        disabled={transferring}
+                        placeholder="Add a note for this transfer"
+                        rows={2}
+                    />
+                </Form.Item>
+
+                <div className="flex justify-end gap-1 mt-3">
+                    <motion.button
+                        className="primary-outlined-btn"
+                        onClick={handleClose}
+                        disabled={transferring}
+                        type='button'
+                        whileHover={{ scale: transferring ? 1 : 1.02 }}
+                    >
+                        Cancel
+                    </motion.button>
+                    <motion.button
+                        className="primary-contained-btn"
+                        type='submit'
+                        disabled={transferring || !selectedReceiver}
+                        whileHover={{ scale: (transferring || !selectedReceiver) ? 1 : 1.02 }}
+                        whileTap={{ scale: (transferring || !selectedReceiver) ? 1 : 0.98 }}
+                    >
+                        {transferring ? (
+                            <span className="btn-spinner">
+                                <i className="ri-loader-4-line spin"></i>
+                                Transferring...
+                            </span>
+                        ) : (
+                            <>
+                                <i className="ri-send-plane-line mr-1"></i>
+                                Transfer
+                            </>
+                        )}
+                    </motion.button>
+                </div>
+
+            </Form>
+        </Modal>
+
+    </div>
+  )
+}
+
+export default TransferFundsModels

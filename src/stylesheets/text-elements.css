@@ -1,0 +1,142 @@
+
+
+.text-2xl{
+    font-size: 25px !important;
+}
+
+.text-xl{
+    font-size:  20px !important;
+}
+.text-lg{
+    font-size:  18px !important;
+}
+.text-md{
+    font-size:  16px !important;
+}
+.text-sm{
+    font-size:  14px !important;
+}
+
+.tex-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.underline{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+h1{
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+i{
+    font-size: 20px ;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+
+.font-mono {
+    font-family: 'Courier New', monospace;
+}
+
+.opacity-80 {
+    opacity: 0.8;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--border);
+}
+
+/* Welcome section */
+.welcome-section {
+    margin-bottom: 24px;
+}
+
+.welcome-section h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.welcome-section p {
+    color: var(--text-secondary);
+}
+
+/* Account cards grid */
+.account-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.balance-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.card-value {
+    font-size: 28px;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+/* Info grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.info-value {
+    font-size: 15px;
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 8px 12px;
+    background-color: var(--background);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
