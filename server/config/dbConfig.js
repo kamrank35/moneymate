@@ -14,14 +14,14 @@ const mg = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mg.connect("mongodb://localhost:27017/moneymate", {
+        await mg.connect(process.env.mongo_url, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
         console.log('Mongo DB connected successfully');
     } catch (err) {
         console.error('Connection error:', err);
-        process.exit(1); // Exit the process if the connection fails
+        process.exit(1);
     }
 };
 
