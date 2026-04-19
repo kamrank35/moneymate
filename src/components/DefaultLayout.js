@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import { Modal, message } from 'antd'
 
 function DefaultLayout({children}) {
     const [collapsed,setCollapsed] = React.useState(false)
+    const [showLogoutModal, setShowLogoutModal] = useState(false)
     const {user} = useSelector(state=>state.users)
     const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        message.success('Logged out successfully')
+        navigate('/login')
+    }
 
     const userMenu = [
         {
@@ -23,10 +31,7 @@ function DefaultLayout({children}) {
         {
             title:'Logout',
             icon:'ri-logout-box-line',
-            onClick: () => {
-                localStorage.removeItem('token')
-                navigate('/login')
-            },
+            onClick: () => setShowLogoutModal(true),
             path:"/logout"
         },
     ]
@@ -53,10 +58,7 @@ function DefaultLayout({children}) {
         {
             title:'Logout',
             icon:'ri-logout-box-line',
-            onClick: () => {
-                localStorage.removeItem('token')
-                navigate('/login')
-            },
+            onClick: () => setShowLogoutModal(true),
             path:"/logout"
         },
     ]
@@ -112,6 +114,18 @@ function DefaultLayout({children}) {
                 <div className="content">{children}</div>
             </div>
         </div>
+
+        <Modal
+            title="Confirm Logout"
+            open={showLogoutModal}
+            onCancel={() => setShowLogoutModal(false)}
+            onOk={handleLogout}
+            okText="Yes, Logout"
+            cancelText="Cancel"
+            okButtonProps={{ danger: true }}
+        >
+            <p>Are you sure you want to logout?</p>
+        </Modal>
     )
 }
 
