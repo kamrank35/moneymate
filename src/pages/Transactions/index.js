@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import PageTitle from '../../components/PageTitle'
 import { message, Table } from 'antd'
 import TransferFundsModels from './TransferFundsModels';
 import { useDispatch, useSelector } from 'react-redux';
@@ -130,6 +129,7 @@ function Transactions() {
 
   useEffect(()=>{
     getData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const containerVariants = {

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PageTitle from '../../components/PageTitle';
-import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
+import { useDispatch } from 'react-redux';
 import { message, Table } from 'antd';
 import { GetAllUsers } from '../../apicalls/Users';
 
@@ -59,6 +57,7 @@ const Users = () => {
 
   useEffect(() => {
     getData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

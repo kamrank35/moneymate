@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Modal, Form, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProfile, UpdatePassword } from '../../apicalls/Users';
-import { ShowLoading, HideLoading } from '../../redux/loadersSlice';
 import { SetUser } from '../../redux/usersSlice';
 
 function EditProfile({ showEditProfile, setShowEditProfile }) {
