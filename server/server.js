@@ -1,7 +1,9 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config()
 const exp = require('express')
 const app = exp()
+const cors = require('cors')
 
+app.use(cors())
 app.use(exp.json())
 const dbConfig = require("./config/dbConfig")
 const usersRoute = require("./routes/usersRoute")
@@ -10,7 +12,7 @@ const transactionRoute = require("./routes/transactionRoutes")
 app.use('/api/users',usersRoute)
 app.use('/api/transactions',transactionRoute)
 
-const PORT = 8000 ;
+const PORT = process.env.PORT || 8000 ;
 
 app.listen(PORT,() => {
     console.log(`Server started on ${PORT}`)
