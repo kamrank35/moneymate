@@ -6,6 +6,10 @@ import { Modal, message } from 'antd'
 function DefaultLayout({children}) {
     const [collapsed,setCollapsed] = React.useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false)
+    const [isDarkTheme, setIsDarkTheme] = useState(() => {
+        const saved = localStorage.getItem('theme')
+        return saved === 'dark'
+    })
     const {user} = useSelector(state=>state.users)
     const navigate = useNavigate()
 
@@ -14,6 +18,17 @@ function DefaultLayout({children}) {
         message.success('Logged out successfully')
         navigate('/login')
     }
+
+    const toggleTheme = () => {
+        const newTheme = !isDarkTheme
+        setIsDarkTheme(newTheme)
+        localStorage.setItem('theme', newTheme ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', newTheme ? 'dark' : 'light')
+    }
+
+    React.useEffect(() => {
+        document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
+    }, [isDarkTheme])
 
     const userMenu = [
         {
@@ -103,6 +118,9 @@ function DefaultLayout({children}) {
                         <h1 className="text-xl text-secondary">MONEY MATE</h1>
                     </div>
                     <div className="user-info flex align-center gap-2">
+                        <button className="theme-toggle-btn" onClick={toggleTheme}>
+                            <i className={isDarkTheme ? "ri-sun-line" : "ri-moon-line"}></i>
+                        </button>
                         <div className="user-avatar bg-secondary flex align-center justify-center text-white">
                             {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
                         </div>
