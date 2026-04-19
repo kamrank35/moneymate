@@ -115,15 +115,28 @@ function DefaultLayout({children}) {
             </div>
 
             <Modal
-                title="Confirm Logout"
+                title={
+                    <div className="modal-title">
+                        <i className="ri-logout-box-r-line"></i>
+                        <span>Confirm Logout</span>
+                    </div>
+                }
                 open={showLogoutModal}
                 onCancel={() => setShowLogoutModal(false)}
                 onOk={handleLogout}
                 okText="Yes, Logout"
                 cancelText="Cancel"
                 okButtonProps={{ danger: true }}
+                width={450}
+                className="logout-confirmation-modal"
             >
-                <p>Are you sure you want to logout?</p>
+                <div className="modal-content">
+                    <div className="logout-icon-wrapper">
+                        <i className="ri-logout-box-line"></i>
+                    </div>
+                    <p>Are you sure you want to logout?</p>
+                    <p className="modal-subtitle">You will need to sign in again to access your account.</p>
+                </div>
             </Modal>
         </div>
     )
