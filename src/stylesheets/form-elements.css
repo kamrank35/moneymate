@@ -103,7 +103,7 @@ select {
 .primary-outlined-btn {
     background-color: var(--surface);
     color: var(--primary);
-    padding: 12px 24px;
+    padding: 10px 20px;
     text-transform: uppercase;
     border: 2px solid var(--primary);
     border-radius: 8px;
@@ -113,8 +113,8 @@ select {
 }
 
 .primary-outlined-btn:hover {
-    background-color: var(--primary);
-    color: white;
+    background-color: var(--primary) !important;
+    color: white !important;
     box-shadow: 0 4px 8px rgba(26, 95, 74, 0.3);
     transform: translateY(-1px);
 }
