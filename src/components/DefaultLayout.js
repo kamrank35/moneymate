@@ -113,19 +113,19 @@ function DefaultLayout({children}) {
                 </div>
                 <div className="content">{children}</div>
             </div>
-        </div>
 
-        <Modal
-            title="Confirm Logout"
-            open={showLogoutModal}
-            onCancel={() => setShowLogoutModal(false)}
-            onOk={handleLogout}
-            okText="Yes, Logout"
-            cancelText="Cancel"
-            okButtonProps={{ danger: true }}
-        >
-            <p>Are you sure you want to logout?</p>
-        </Modal>
+            <Modal
+                title="Confirm Logout"
+                open={showLogoutModal}
+                onCancel={() => setShowLogoutModal(false)}
+                onOk={handleLogout}
+                okText="Yes, Logout"
+                cancelText="Cancel"
+                okButtonProps={{ danger: true }}
+            >
+                <p>Are you sure you want to logout?</p>
+            </Modal>
+        </div>
     )
 }
 
