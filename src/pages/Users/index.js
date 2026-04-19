@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { message, Table } from 'antd';
 import { GetAllUsers } from '../../apicalls/Users';
+import { ShowLoading, HideLoading } from '../../redux/loadersSlice';
 
 const Users = () => {
   const [data, setUsers] = React.useState([]);
