@@ -6,7 +6,6 @@ const AnimatedNumber = ({ value, duration = 1.5, prefix = '$', suffix = '' }) =>
 
   useEffect(() => {
     let startTime;
-    const startValue = 0;
     const endValue = typeof value === 'number' ? value : parseFloat(value) || 0;
 
     const animate = (currentTime) => {
