@@ -451,37 +451,107 @@
 }
 
 /* Dark Theme Styles for Tables */
+[data-theme='dark'] .ant-table-wrapper {
+    background-color: var(--surface) !important;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
 [data-theme='dark'] .ant-table {
-    background-color: var(--surface);
-    color: var(--text-primary);
+    background-color: var(--surface) !important;
+    color: var(--text-primary) !important;
 }
 
 [data-theme='dark'] .ant-table-thead > tr > th {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+    color: white !important;
+    border-bottom: none !important;
+}
+
+[data-theme='dark'] .ant-table-thead > tr > th::before {
+    display: none !important;
+}
+
+[data-theme='dark'] .ant-table-tbody {
+    background-color: var(--surface) !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr {
+    background-color: var(--surface) !important;
 }
 
 [data-theme='dark'] .ant-table-tbody > tr > td {
+    background-color: var(--surface) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr:hover > td {
+    background-color: var(--surface-hover) !important;
+}
+
+/* All text in table cells in dark mode */
+[data-theme='dark'] .ant-table-tbody > tr > td * {
+    color: var(--text-primary) !important;
+}
+
+/* Status badges in table */
+[data-theme='dark'] .ant-table-tbody .status-badge {
+    color: white !important;
+}
+
+/* Text utility classes in dark mode */
+[data-theme='dark'] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme='dark'] .text-success {
+    color: var(--success) !important;
+}
+
+[data-theme='dark'] .text-danger {
+    color: var(--danger) !important;
+}
+
+[data-theme='dark'] .font-mono {
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .font-bold {
+    color: var(--text-primary) !important;
+}
+
+/* Ant Design pagination in dark mode */
+[data-theme='dark'] .ant-pagination {
     background-color: var(--surface);
     color: var(--text-primary);
-    border-bottom: 1px solid var(--border);
 }
 
-[data-theme='dark'] .ant-table-tbody > tr:hover {
-    background-color: var(--surface-hover);
+[data-theme='dark'] .ant-pagination-item {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
 }
 
-/* Fix hover text colors in dark mode */
-[data-theme='dark'] .ant-table-tbody > tr:hover td .text-muted {
-    color: #94a3b8 !important;
+[data-theme='dark'] .ant-pagination-item a {
+    color: var(--text-primary) !important;
 }
 
-[data-theme='dark'] .ant-table-tbody > tr:hover td .font-mono {
-    color: #f1f5f9 !important;
+[data-theme='dark'] .ant-pagination-item-active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
 }
 
-[data-theme='dark'] .ant-table-tbody > tr:hover td .font-bold {
-    color: #f1f5f9 !important;
+[data-theme='dark'] .ant-pagination-prev .ant-pagination-item-link,
+[data-theme='dark'] .ant-pagination-next .ant-pagination-item-link {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-pagination-options .ant-select-selector {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+    color: var(--text-primary) !important;
 }
 
 [data-theme='dark'] .ant-table table {
