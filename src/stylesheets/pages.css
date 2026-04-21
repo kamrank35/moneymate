@@ -417,6 +417,18 @@
     background: var(--surface-hover);
 }
 
+/* Dark mode - logout modal cancel button */
+[data-theme='dark'] .logout-confirmation-modal .ant-btn-default {
+    background: var(--surface-hover);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .logout-confirmation-modal .ant-btn-default:hover {
+    background: #2a2a2a;
+    border-color: var(--text-muted);
+}
+
 .logout-confirmation-modal .ant-btn-dangerous {
     background: linear-gradient(135deg, var(--danger) 0%, var(--danger-light) 100%);
     border: none;
