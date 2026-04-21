@@ -14,7 +14,7 @@
  * - Use that 16-character password (not your regular password)
  */
 
-require('dotenv').config();
+require('dotenv').config({ path: '../../.env' });
 const { sendOTPEmail } = require('./services/emailService');
 
 const testEmail = process.argv[2];
