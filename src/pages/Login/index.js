@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
 import {Form,Col,Row, message} from 'antd'
 import { LoginUser } from '../../apicalls/Users'
@@ -7,6 +7,20 @@ import { motion } from 'framer-motion'
 function Login() {
     const navigate = useNavigate()
     const [loading, setLoading] = React.useState(false)
+    const [isDarkTheme, setIsDarkTheme] = useState(() => {
+        const saved = localStorage.getItem('theme')
+        return saved === 'dark'
+    })
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light')
+    }, [isDarkTheme])
+
+    const toggleTheme = () => {
+        const newTheme = !isDarkTheme
+        setIsDarkTheme(newTheme)
+        localStorage.setItem('theme', newTheme ? 'dark' : 'light')
+    }
     const onFinish = async(values) => {
         try {
             setLoading(true)
@@ -33,6 +47,9 @@ function Login() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
         >
+            <button className="theme-toggle-login" onClick={toggleTheme}>
+                <i className={isDarkTheme ? "ri-sun-line" : "ri-moon-line"}></i>
+            </button>
             <motion.div
                 className="login-card card"
                 initial={{ y: 30, opacity: 0 }}

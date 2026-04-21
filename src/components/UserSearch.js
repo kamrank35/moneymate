@@ -86,14 +86,17 @@ const UserSearch = ({ onSelect, disabled }) => {
                     onFocus={() => query.length >= 2 && setShowResults(true)}
                     placeholder="Search by name, email, or phone..."
                     disabled={disabled}
+                    className="user-search-input"
                     style={{
                         width: '100%',
                         padding: '12px 40px 12px 42px',
-                        border: '1px solid #e2e8f0',
+                        border: '1px solid var(--border)',
                         borderRadius: '8px',
                         fontSize: '14px',
                         outline: 'none',
-                        boxSizing: 'border-box'
+                        boxSizing: 'border-box',
+                        backgroundColor: 'var(--surface)',
+                        color: 'var(--text-primary)'
                     }}
                 />
                 {loading && (
@@ -132,105 +135,39 @@ const UserSearch = ({ onSelect, disabled }) => {
             </div>
 
             {showResults && results.length > 0 && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        right: 0,
-                        marginTop: '4px',
-                        background: '#ffffff',
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                        maxHeight: '280px',
-                        overflowY: 'auto',
-                        zIndex: 1002
-                    }}
-                >
+                <div className="user-search-results">
                     {results.map((user) => (
                         <div
                             key={user._id}
                             onClick={() => handleSelect(user)}
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '12px',
-                                padding: '12px 16px',
-                                cursor: 'pointer',
-                                borderBottom: '1px solid #e2e8f0',
-                                transition: 'background 0.15s'
-                            }}
-                            onMouseEnter={(e) => e.target.style.background = '#f1f5f9'}
-                            onMouseLeave={(e) => e.target.style.background = 'transparent'}
+                            className="user-search-result-item"
                         >
-                            <div
-                                style={{
-                                    width: '36px',
-                                    height: '36px',
-                                    borderRadius: '50%',
-                                    background: '#1a5f4a',
-                                    color: 'white',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontWeight: 600,
-                                    fontSize: '14px'
-                                }}
-                            >
+                            <div className="user-avatar-small">
                                 {user.firstName.charAt(0).toUpperCase()}
                             </div>
                             <div style={{ flex: 1 }}>
-                                <div style={{ fontWeight: 500, color: '#1e293b', fontSize: '14px' }}>
+                                <div className="user-name-text">
                                     {user.firstName} {user.lastName}
                                 </div>
-                                <div style={{ fontSize: '12px', color: '#94a3b8' }}>
+                                <div className="user-email-text">
                                     {user.email}
                                 </div>
                             </div>
-                            <i className="ri-arrow-right-line" style={{ color: '#94a3b8' }}></i>
+                            <i className="ri-arrow-right-line"></i>
                         </div>
                     ))}
                 </div>
             )}
 
             {showResults && results.length === 0 && query.length >= 2 && !loading && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        right: 0,
-                        marginTop: '4px',
-                        background: '#ffffff',
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px',
-                        padding: '24px',
-                        textAlign: 'center',
-                        color: '#94a3b8',
-                        zIndex: 1002
-                    }}
-                >
-                    <i className="ri-user-search-line" style={{ fontSize: '32px', display: 'block', marginBottom: '8px' }}></i>
+                <div className="user-search-no-results">
+                    <i className="ri-user-search-line"></i>
                     <span>No users found</span>
                 </div>
             )}
 
             {selectedUser && (
-                <div
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginTop: '8px',
-                        padding: '8px 12px',
-                        background: '#d1fae5',
-                        color: '#10b981',
-                        borderRadius: '6px',
-                        fontSize: '13px',
-                        fontWeight: 500
-                    }}
-                >
+                <div className="selected-user-badge">
                     <i className="ri-check-line"></i>
                     <span>Sending to: {selectedUser.firstName} {selectedUser.lastName}</span>
                 </div>

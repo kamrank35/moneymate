@@ -449,3 +449,146 @@
         transform: translateY(0) scale(1);
     }
 }
+
+/* Dark Theme Styles for Tables */
+[data-theme='dark'] .ant-table {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .ant-table-thead > tr > th {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr > td {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-theme='dark'] .ant-table-tbody > tr:hover {
+    background-color: var(--surface-hover);
+}
+
+[data-theme='dark'] .ant-table table {
+    background-color: var(--surface);
+}
+
+[data-theme='dark'] .ant-table-tbody > tr > td .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr > td .font-bold {
+    color: var(--text-primary) !important;
+}
+
+/* Dark Theme for Modals */
+[data-theme='dark'] .ant-modal-content {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .ant-modal-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+[data-theme='dark'] .ant-modal-title {
+    color: white;
+}
+
+[data-theme='dark'] .ant-modal-body {
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .ant-modal-footer {
+    border-top: 1px solid var(--border);
+}
+
+[data-theme='dark'] .ant-select-selector {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-select-dropdown {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+}
+
+[data-theme='dark'] .ant-select-item {
+    background-color: var(--surface) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-select-item-option-selected {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+[data-theme='dark'] .ant-input,
+[data-theme='dark'] .ant-input-affix-wrapper {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-input::placeholder,
+[data-theme='dark'] .ant-input-affix-wrapper::placeholder {
+    color: var(--text-muted) !important;
+}
+
+[data-theme='dark'] .ant-form-item-label > label {
+    color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-divider {
+    border-color: var(--border);
+}
+
+/* Dark Theme for Login/Register */
+[data-theme='dark'] .login-page,
+[data-theme='dark'] .register-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+[data-theme='dark'] .login-header p,
+[data-theme='dark'] .register-header p {
+    color: var(--text-secondary);
+}
+
+[data-theme='dark'] .logo-icon {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%) !important;
+}
+
+[data-theme='dark'] hr {
+    border-color: var(--border);
+}
+
+/* Theme toggle on login/register */
+.theme-toggle-login {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle-login:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.theme-toggle-login i {
+    font-size: 20px;
+    color: white;
+}
