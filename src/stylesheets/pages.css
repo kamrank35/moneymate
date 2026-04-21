@@ -471,6 +471,19 @@
     background-color: var(--surface-hover);
 }
 
+/* Fix hover text colors in dark mode */
+[data-theme='dark'] .ant-table-tbody > tr:hover td .text-muted {
+    color: #94a3b8 !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr:hover td .font-mono {
+    color: #f1f5f9 !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr:hover td .font-bold {
+    color: #f1f5f9 !important;
+}
+
 [data-theme='dark'] .ant-table table {
     background-color: var(--surface);
 }

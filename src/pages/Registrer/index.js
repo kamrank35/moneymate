@@ -100,8 +100,12 @@ function Register() {
                             </Form.Item>
                         </Col>
                         <Col span={12}>
-                            <Form.Item label="Mobile" name='phoneNumber' rules={[{ required: true, message: 'Please enter mobile number' }]}>
-                                <input type="tel" placeholder="Mobile number" disabled={loading} />
+                            <Form.Item label="Mobile" name='phoneNumber' rules={[
+                                { required: true, message: 'Please enter mobile number' },
+                                { pattern: /^[0-9]+$/, message: 'Mobile number must contain only digits' },
+                                { len: 10, message: 'Mobile number must be exactly 10 digits' }
+                            ]}>
+                                <input type="tel" placeholder="Mobile number" disabled={loading} maxLength={10} />
                             </Form.Item>
                         </Col>
 
