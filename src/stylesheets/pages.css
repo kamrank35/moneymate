@@ -407,14 +407,21 @@
 }
 
 .logout-confirmation-modal .ant-btn-default {
-    border-color: var(--border);
+    border: 2px solid var(--border);
+    background: transparent;
     color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .logout-confirmation-modal .ant-btn-default:hover {
     border-color: var(--text-secondary);
     color: var(--text-primary);
     background: var(--surface-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode - logout modal cancel button */
@@ -427,6 +434,8 @@
 [data-theme='dark'] .logout-confirmation-modal .ant-btn-default:hover {
     background: #2a2a2a;
     border-color: var(--text-muted);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .logout-confirmation-modal .ant-btn-dangerous {
