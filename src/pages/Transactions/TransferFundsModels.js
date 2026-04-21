@@ -3,7 +3,7 @@ import { Modal,Form, message } from 'antd'
 import { useDispatch,useSelector } from 'react-redux'
 import { TransferFunds } from '../../apicalls/transactions'
 import { ShowLoading, HideLoading } from "../../redux/loadersSlice"
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import UserSearch from '../../components/UserSearch'
 
 function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel,reloadData} ) {
@@ -84,19 +84,16 @@ function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel
                         />
                     </Form.Item>
 
-                    <AnimatePresence>
                     {selectedReceiver && (
                         <motion.div
                             className='selected-user-badge'
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
                         >
                             <i className="ri-check-line"></i>
                             Sending to: {selectedReceiver.firstName} {selectedReceiver.lastName}
                         </motion.div>
                     )}
-                    </AnimatePresence>
 
                     <Form.Item
                         label="Amount"
