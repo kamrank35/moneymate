@@ -75,3 +75,23 @@ export const UpdatePassword = async(payload) => {
         return error.response.data;
     }
 }
+
+// send OTP for password change
+export const SendOTP = async(payload) => {
+    try {
+        const { data } = await axiosInstance.post("/api/users/send-otp", payload);
+        return data
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
+// verify OTP for password change
+export const VerifyOTP = async(payload) => {
+    try {
+        const { data } = await axiosInstance.post("/api/users/verify-otp", payload);
+        return data
+    } catch (error) {
+        return error.response.data;
+    }
+}
