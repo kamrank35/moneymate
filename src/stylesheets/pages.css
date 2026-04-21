@@ -407,9 +407,9 @@
 }
 
 .logout-confirmation-modal .ant-btn-default {
-    border: 2px solid var(--border);
-    background: transparent;
-    color: var(--text-secondary);
+    border: 2px solid var(--border) !important;
+    background: transparent !important;
+    color: var(--text-secondary) !important;
     font-weight: 600;
     border-radius: 10px;
     cursor: pointer;
@@ -417,23 +417,24 @@
 }
 
 .logout-confirmation-modal .ant-btn-default:hover {
-    border-color: var(--text-secondary);
-    color: var(--text-primary);
-    background: var(--surface-hover);
+    border-color: var(--text-secondary) !important;
+    color: var(--text-primary) !important;
+    background: var(--surface-hover) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode - logout modal cancel button */
 [data-theme='dark'] .logout-confirmation-modal .ant-btn-default {
-    background: var(--surface-hover);
-    border-color: var(--border);
-    color: var(--text-primary);
+    background: var(--surface-hover) !important;
+    border-color: var(--border) !important;
+    color: var(--text-primary) !important;
 }
 
 [data-theme='dark'] .logout-confirmation-modal .ant-btn-default:hover {
-    background: #2a2a2a;
-    border-color: var(--text-muted);
+    background: #2a2a2a !important;
+    border-color: var(--text-muted) !important;
+    color: var(--text-primary) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
