@@ -49,8 +49,6 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
         maskClosable={!depositing}
         width={450}
         className="deposit-modal"
-        destroyOnClose={true}
-        centered
     >
         <div className="modal-content-wrapper">
             <div className="deposit-icon-wrapper">
