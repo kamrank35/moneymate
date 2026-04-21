@@ -130,6 +130,24 @@ function DefaultLayout({children}) {
                     </div>
                 </div>
                 <div className="content">{children}</div>
+
+                {/* Mobile Bottom Navigation */}
+                <div className="mobile-bottom-nav">
+                    {menuToRender.map((item)=> {
+                        const isActive = window.location.pathname === item.path
+                        const isLogout = item.path === "/logout"
+                        return (
+                            <button
+                                key={item.path}
+                                className={`mobile-nav-item ${isActive ? 'active' : ''} ${isLogout ? 'logout-nav' : ''}`}
+                                onClick={item.onClick}
+                            >
+                                <i className={item.icon}></i>
+                                <span>{item.title}</span>
+                            </button>
+                        )
+                    })}
+                </div>
             </div>
 
             <Modal

@@ -1157,3 +1157,245 @@ body {
     background: var(--primary-light);
 }
 
+/* ========== Mobile Home Page Styles ========== */
+
+/* Desktop - Horizontal Balance Cards */
+.balance-cards-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.balance-card-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.balance-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.balance-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.balance-info {
+    flex: 1;
+}
+
+.balance-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 4px;
+}
+
+.balance-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.account-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.account-info {
+    flex: 1;
+}
+
+.account-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 4px;
+}
+
+.account-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Personal Info Card Mobile */
+.info-card-header {
+    margin-bottom: 16px;
+}
+
+.info-card-header h2 {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.info-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row.full-width {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.info-row .info-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.info-row .info-value {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-align: right;
+}
+
+.info-row.full-width .info-value {
+    text-align: left;
+}
+
+/* Mobile Home Page Layout */
+@media (max-width: 767px) {
+    .home-page {
+        padding-bottom: 20px;
+    }
+
+    .welcome-section {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px !important;
+    }
+
+    .welcome-text {
+        width: 100%;
+    }
+
+    .welcome-text h1 {
+        font-size: 20px !important;
+    }
+
+    .edit-profile-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .edit-profile-btn span {
+        display: inline;
+    }
+
+    /* Mobile Balance Cards - Vertical Stack */
+    .balance-cards-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .balance-card-horizontal {
+        padding: 16px !important;
+    }
+
+    .balance-label {
+        font-size: 11px;
+    }
+
+    .balance-value {
+        font-size: 22px;
+    }
+
+    .account-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .account-icon i {
+        font-size: 20px;
+    }
+
+    .account-value {
+        font-size: 12px;
+    }
+
+    /* Personal Info Card Mobile */
+    .personal-info-card {
+        padding: 16px !important;
+    }
+
+    .info-card-header h2 {
+        font-size: 14px !important;
+    }
+
+    .info-row {
+        padding: 10px 0;
+    }
+
+    .info-row .info-label {
+        font-size: 11px;
+    }
+
+    .info-row .info-value {
+        font-size: 13px;
+    }
+}
+
+/* Extra small mobile */
+@media (max-width: 374px) {
+    .welcome-text h1 {
+        font-size: 18px !important;
+    }
+
+    .balance-card-horizontal {
+        padding: 12px !important;
+    }
+
+    .balance-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .balance-icon i {
+        font-size: 20px;
+    }
+
+    .balance-value {
+        font-size: 20px;
+    }
+
+    .personal-info-card {
+        padding: 12px !important;
+    }
+}
+
+
