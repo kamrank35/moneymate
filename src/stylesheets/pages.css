@@ -828,6 +828,18 @@
     color: var(--text-primary);
 }
 
+/* Dark mode - modal cancel button */
+[data-theme='dark'] .modal-cancel-btn {
+    background: var(--surface-hover);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .modal-cancel-btn:hover {
+    background: #2a2a2a;
+    border-color: var(--text-muted);
+}
+
 /* ========== Edit Profile Modal ========== */
 .edit-profile-modal .ant-modal-content {
     border-radius: 20px;
