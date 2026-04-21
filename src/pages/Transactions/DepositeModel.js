@@ -4,7 +4,6 @@ import StripeCheckout from 'react-stripe-checkout'
 import { useDispatch } from 'react-redux'
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice'
 import { DepositeFunds } from '../../apicalls/transactions'
-import { motion, AnimatePresence } from 'framer-motion'
 
 function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
 
@@ -35,8 +34,6 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
     }
 
   return (
-    <AnimatePresence>
-    {showDepositeModal && (
     <Modal
         title={
             <div className="modal-title">
@@ -108,8 +105,6 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
             </Form>
         </div>
     </Modal>
-    )}
-    </AnimatePresence>
   )
 }
 
