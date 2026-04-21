@@ -4,6 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import { useDispatch } from 'react-redux'
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice'
 import { DepositeFunds } from '../../apicalls/transactions'
+import { motion } from 'framer-motion'
 
 function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
 
