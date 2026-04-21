@@ -243,14 +243,16 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
 
         if (!emailResult.success) {
             console.error('Failed to send OTP email:', emailResult.error);
-            // Don't fail the request - OTP is still valid in DB
-            // In production, you might want to retry or alert admin
+            // Return error to user so they know email isn't configured
+            return res.send({
+                success: false,
+                message: "Failed to send OTP email. Please contact support or check server logs."
+            });
         }
 
         res.send({
             success: true,
             message: "OTP sent successfully to your registered email"
-            // Note: OTP is no longer returned in response for security
         });
     } catch (error) {
         res.send({

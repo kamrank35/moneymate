@@ -2,21 +2,42 @@ const nodemailer = require('nodemailer');
 
 // Create transporter with Gmail or SMTP
 const createTransporter = () => {
-    return nodemailer.createTransport({
+    const config = {
         host: process.env.email_host || 'smtp.gmail.com',
-        port: process.env.email_port || 587,
+        port: parseInt(process.env.email_port) || 587,
         secure: false, // true for 465, false for other ports
         auth: {
             user: process.env.email_user,
             pass: process.env.email_password
         }
+    };
+
+    console.log('Email config:', {
+        host: config.host,
+        port: config.port,
+        user: config.auth.user ? '***@***' : 'NOT_SET'
     });
+
+    return nodemailer.createTransport(config);
 };
 
 // Send OTP via email
 const sendOTPEmail = async (email, otp) => {
     try {
+        // Check if email config is set
+        if (!process.env.email_user || !process.env.email_password) {
+            console.warn('Email credentials not configured. OTP:', otp);
+            return {
+                success: false,
+                error: 'Email service not configured. Please contact admin.'
+            };
+        }
+
         const transporter = createTransporter();
+
+        // Verify transporter connection
+        await transporter.verify();
+        console.log('Email transporter verified successfully');
 
         const mailOptions = {
             from: `"MoneyMate" <${process.env.email_user}>`,
@@ -71,10 +92,11 @@ const sendOTPEmail = async (email, otp) => {
         };
 
         const info = await transporter.sendMail(mailOptions);
-        console.log('OTP email sent:', info.messageId);
+        console.log('✅ OTP email sent successfully to:', email, 'Message ID:', info.messageId);
         return { success: true, messageId: info.messageId };
     } catch (error) {
-        console.error('Error sending OTP email:', error);
+        console.error('❌ Error sending OTP email:', error.message);
+        console.error('Full error:', error);
         return { success: false, error: error.message };
     }
 };
