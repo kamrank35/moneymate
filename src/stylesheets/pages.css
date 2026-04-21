@@ -700,44 +700,18 @@
 
 /* ========== Fancy Modal Styles (Deposit & Transfer) ========== */
 
-/* Override Ant Design default animation for deposit/transfer modals */
-/* Ant Design uses .ant-zoom-enter and .ant-zoom-leave classes internally */
-
+/* Set transform origin for modal animation */
 .deposit-modal .ant-modal,
 .transfer-modal .ant-modal {
     transform-origin: center center;
 }
 
-/* Custom animation for modal entrance */
-.deposit-modal.ant-zoom-enter,
-.transfer-modal.ant-zoom-enter,
-.deposit-modal.ant-zoom-enter-active,
-.transfer-modal.ant-zoom-enter-active {
-    opacity: 0;
-    transform: scale(0.9) translateY(25px);
-    transition: all 0.3s ease;
-}
+/* Override Ant Design's default zoom animation with custom fade-up/down */
+/* This makes modals fade in from bottom and fade out to bottom */
 
-.deposit-modal.ant-zoom-enter-active,
-.transfer-modal.ant-zoom-enter-active {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-}
-
-/* Custom animation for modal exit (fade out downwards) */
-.deposit-modal.ant-zoom-leave,
-.transfer-modal.ant-zoom-leave,
-.deposit-modal.ant-zoom-leave-active,
-.transfer-modal.ant-zoom-leave-active {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    transition: all 0.3s ease;
-}
-
-.deposit-modal.ant-zoom-leave-active,
-.transfer-modal.ant-zoom-leave-active {
-    opacity: 0;
-    transform: scale(0.9) translateY(25px);
+.deposit-modal .ant-modal-mask,
+.transfer-modal .ant-modal-mask {
+    transition: opacity 0.3s ease;
 }
 
 .deposit-modal .ant-modal-content,
