@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middlewares/authMiddleware');
 const OTP = require('../models/otpModel');
 const { v4: uuidv4 } = require('uuidv4');
+const { sendOTPEmail } = require('../services/emailService');
 
 
 // register user account
@@ -237,12 +238,19 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
 
         await newOTP.save();
 
-        // In production, send OTP via email/SMS here
-        // For now, return OTP in response (remove in production)
+        // Send OTP via email
+        const emailResult = await sendOTPEmail(user.email, otp);
+
+        if (!emailResult.success) {
+            console.error('Failed to send OTP email:', emailResult.error);
+            // Don't fail the request - OTP is still valid in DB
+            // In production, you might want to retry or alert admin
+        }
+
         res.send({
             success: true,
-            message: "OTP sent successfully",
-            otp: otp // Remove this in production - only for testing
+            message: "OTP sent successfully to your registered email"
+            // Note: OTP is no longer returned in response for security
         });
     } catch (error) {
         res.send({

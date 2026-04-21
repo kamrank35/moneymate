@@ -59,10 +59,8 @@ function EditProfile({ showEditProfile, setShowEditProfile }) {
                 userId: user._id
             });
             if (response.success) {
-                message.success('OTP sent successfully! Check your email/phone');
+                message.success('OTP sent successfully! Check your registered email.');
                 setOtpStep('verify');
-                // For testing - remove in production
-                console.log('OTP (for testing):', response.otp);
             } else {
                 message.error(response.message);
             }
