@@ -63,106 +63,115 @@ function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel
     <div>
 
         <Modal
-            title="Transfer Funds"
+            title={
+                <div className="modal-title">
+                    <i className="ri-send-plane-line"></i>
+                    <span>Transfer Funds</span>
+                </div>
+            }
             open={showTransferFundsModel}
             onCancel={handleClose}
             footer={null}
             closable={!transferring}
             maskClosable={!transferring}
             width={480}
+            className="transfer-modal"
         >
-            <Form layout='vertical' form={form} onFinish={onFinish}>
-                <Form.Item label="Select Recipient">
-                    <UserSearch
-                        onSelect={handleUserSelect}
-                        disabled={transferring}
-                    />
-                </Form.Item>
+            <div className="modal-content-wrapper">
+                <Form layout='vertical' form={form} onFinish={onFinish}>
+                    <Form.Item label="Select Recipient">
+                        <UserSearch
+                            onSelect={handleUserSelect}
+                            disabled={transferring}
+                        />
+                    </Form.Item>
 
-                <AnimatePresence>
-                {selectedReceiver && (
-                    <motion.div
-                        className='success-bg mb-3'
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                    >
-                        <i className="ri-check-line mr-1"></i>
-                        Recipient: {selectedReceiver.firstName} {selectedReceiver.lastName}
-                    </motion.div>
-                )}
-                </AnimatePresence>
+                    <AnimatePresence>
+                    {selectedReceiver && (
+                        <motion.div
+                            className='selected-user-badge'
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                        >
+                            <i className="ri-check-line"></i>
+                            Sending to: {selectedReceiver.firstName} {selectedReceiver.lastName}
+                        </motion.div>
+                    )}
+                    </AnimatePresence>
 
-                <Form.Item
-                    label="Amount"
-                    name="amount"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your amount!"
-                        },
-                        {
-                            validator: (_, value) => {
-                                if (value && parseFloat(value) <= 0) {
-                                    return Promise.reject('Amount must be greater than 0');
+                    <Form.Item
+                        label="Amount"
+                        name="amount"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please enter amount!"
+                            },
+                            {
+                                validator: (_, value) => {
+                                    if (value && parseFloat(value) <= 0) {
+                                        return Promise.reject('Amount must be greater than 0');
+                                    }
+                                    if (value && parseFloat(value) > user.balance) {
+                                        return Promise.reject('Insufficient Balance');
+                                    }
+                                    return Promise.resolve();
                                 }
-                                if (value && parseFloat(value) > user.balance) {
-                                    return Promise.reject('Insufficient Balance');
-                                }
-                                return Promise.resolve();
                             }
-                        }
-                    ]}
-                >
-                    <input
-                        type="number"
-                        disabled={transferring}
-                        placeholder="Enter amount"
-                        min="1"
-                    />
-                </Form.Item>
-
-                <Form.Item label="Reference (Optional)" name="reference">
-                    <textarea
-                        type="text"
-                        disabled={transferring}
-                        placeholder="Add a note for this transfer"
-                        rows={2}
-                    />
-                </Form.Item>
-
-                <div className="flex justify-end gap-1 mt-3">
-                    <motion.button
-                        className="primary-outlined-btn"
-                        onClick={handleClose}
-                        disabled={transferring}
-                        type='button'
-                        whileHover={{ scale: transferring ? 1 : 1.02 }}
+                        ]}
                     >
-                        Cancel
-                    </motion.button>
-                    <motion.button
-                        className="primary-contained-btn"
-                        type='submit'
-                        disabled={transferring || !selectedReceiver}
-                        whileHover={{ scale: (transferring || !selectedReceiver) ? 1 : 1.02 }}
-                        whileTap={{ scale: (transferring || !selectedReceiver) ? 1 : 0.98 }}
-                    >
-                        {transferring ? (
-                            <span className="btn-spinner">
-                                <i className="ri-loader-4-line spin"></i>
-                                Transferring...
-                            </span>
-                        ) : (
-                            <>
-                                <i className="ri-send-plane-line mr-1"></i>
-                                Transfer
-                            </>
-                        )}
-                    </motion.button>
-                </div>
+                        <input
+                            type="number"
+                            disabled={transferring}
+                            placeholder="Enter amount"
+                            min="1"
+                            className="modal-input"
+                        />
+                    </Form.Item>
 
-            </Form>
+                    <Form.Item label="Reference (Optional)" name="reference">
+                        <textarea
+                            type="text"
+                            disabled={transferring}
+                            placeholder="Add a note for this transfer"
+                            rows={2}
+                            className="modal-input"
+                        />
+                    </Form.Item>
+
+                    <div className="modal-actions">
+                        <motion.button
+                            className="modal-cancel-btn"
+                            onClick={handleClose}
+                            disabled={transferring}
+                            type='button'
+                            whileHover={{ scale: transferring ? 1 : 1.02 }}
+                        >
+                            Cancel
+                        </motion.button>
+                        <motion.button
+                            className="modal-confirm-btn"
+                            type='submit'
+                            disabled={transferring || !selectedReceiver}
+                            whileHover={{ scale: (transferring || !selectedReceiver) ? 1 : 1.02 }}
+                            whileTap={{ scale: (transferring || !selectedReceiver) ? 1 : 0.98 }}
+                        >
+                            {transferring ? (
+                                <span className="btn-spinner">
+                                    <i className="ri-loader-4-line spin"></i>
+                                    Transferring...
+                                </span>
+                            ) : (
+                                <>
+                                    <i className="ri-send-plane-line mr-1"></i>
+                                    Transfer Now
+                                </>
+                            )}
+                        </motion.button>
+                    </div>
+                </Form>
+            </div>
         </Modal>
 
     </div>

@@ -36,28 +36,37 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
 
   return (
     <Modal
-        title="Deposit Funds"
+        title={
+            <div className="modal-title">
+                <i className="ri-bank-line"></i>
+                <span>Deposit Funds</span>
+            </div>
+        }
         open={showDepositeModal}
         onCancel={() => setShowDepositeModal(false)}
         footer={null}
         closable={!depositing}
         maskClosable={!depositing}
+        width={450}
+        className="deposit-modal"
     >
-        <div className="flex flex-col gap-1">
-            <Form layout='vertical'
-                form={form}
-            >
+        <div className="modal-content-wrapper">
+            <div className="deposit-icon-wrapper">
+                <i className="ri-money-dollar-circle-line"></i>
+            </div>
+            <p className="modal-description">Enter the amount you want to deposit into your account.</p>
+            <Form layout='vertical' form={form}>
                 <Form.Item label="Amount"
                 name='amount' rules={[{
                     required: true,
-                    message: 'Please input your amount',
+                    message: 'Please enter your amount',
                 }]}>
-                    <input type='number' disabled={depositing} />
+                    <input type='number' disabled={depositing} placeholder="Enter amount" className="modal-input" />
                 </Form.Item>
 
-                <div className="flex justify-end gap-1">
+                <div className="modal-actions">
                     <motion.button
-                        className='primary-outlined-btn'
+                        className='modal-cancel-btn'
                         onClick={() => setShowDepositeModal(false)}
                         disabled={depositing}
                         type='button'
@@ -74,7 +83,7 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
                         stripeKey="pk_test_51Q1p4nRriCsWZztNI0ZAN0BCfmkndN4JahXkFveiKBWR80mP6jnHpyzn5e1dc0pb9FHitCGgmrSbOhBoeUfAVFR900x5obW6LT"
                     >
                         <motion.button
-                            className='primary-contained-btn'
+                            className='modal-confirm-btn'
                             disabled={depositing}
                             whileHover={{ scale: depositing ? 1 : 1.02 }}
                             whileTap={{ scale: depositing ? 1 : 0.98 }}
@@ -87,13 +96,12 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
                             ) : (
                                 <>
                                     <i className="ri-bank-line mr-1"></i>
-                                    Deposit
+                                    Deposit Now
                                 </>
                             )}
                         </motion.button>
                     </StripeCheckout>
                 </div>
-
             </Form>
         </div>
     </Modal>

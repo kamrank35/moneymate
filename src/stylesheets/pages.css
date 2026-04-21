@@ -675,3 +675,155 @@
     font-size: 20px;
     color: white;
 }
+
+/* ========== Fancy Modal Styles (Deposit & Transfer) ========== */
+.deposit-modal .ant-modal-content,
+.transfer-modal .ant-modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.deposit-modal .ant-modal-header,
+.transfer-modal .ant-modal-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 24px;
+    border-radius: 20px 20px 0 0;
+    border: none;
+}
+
+.deposit-modal .ant-modal-title,
+.transfer-modal .ant-modal-title {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.deposit-modal .ant-modal-body,
+.transfer-modal .ant-modal-body {
+    padding: 24px;
+    background-color: var(--surface);
+}
+
+.deposit-modal .ant-modal-close,
+.transfer-modal .ant-modal-close {
+    color: white;
+    top: 20px;
+    right: 20px;
+}
+
+.modal-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.deposit-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    animation: pulse 2s ease infinite;
+}
+
+.deposit-icon-wrapper i {
+    font-size: 40px;
+    color: white;
+}
+
+.modal-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.modal-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 159, 136, 0.15);
+}
+
+[data-theme='dark'] .modal-input {
+    background: var(--surface-hover);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.modal-cancel-btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-cancel-btn:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+    background: var(--surface-hover);
+}
+
+.modal-confirm-btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(26, 159, 136, 0.3);
+}
+
+.modal-confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26, 159, 136, 0.4);
+}
+
+.modal-confirm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Form labels in modals */
+.deposit-modal .ant-form-item-label > label,
+.transfer-modal .ant-form-item-label > label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+[data-theme='dark'] .deposit-modal .ant-form-item-label > label,
+[data-theme='dark'] .transfer-modal .ant-form-item-label > label {
+    color: var(--text-primary);
+}
