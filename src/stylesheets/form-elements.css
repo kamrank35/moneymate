@@ -118,3 +118,42 @@ select {
     box-shadow: 0 4px 8px rgba(26, 95, 74, 0.3);
     transform: translateY(-1px);
 }
+
+/* Responsive Form Elements */
+@media (max-width: 576px) {
+    input, select, textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .primary-contained-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .primary-outlined-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .login-form .ant-form-item,
+    .register-form .ant-form-item {
+        margin-bottom: 12px;
+    }
+
+    .login-form .ant-col,
+    .register-form .ant-col {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .primary-contained-btn,
+    .primary-outlined-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+

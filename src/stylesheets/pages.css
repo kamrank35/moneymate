@@ -935,3 +935,225 @@ body {
 .ant-table {
     min-width: 700px;
 }
+
+/* ========== Responsive Pages Styles ========== */
+
+/* Login/Register Responsive */
+@media (max-width: 576px) {
+    .login-page, .register-page {
+        padding: 10px;
+    }
+
+    .login-card, .register-card {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-icon i {
+        font-size: 24px;
+    }
+
+    .theme-toggle-login {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle-login i {
+        font-size: 18px;
+    }
+}
+
+/* Home Page Responsive */
+@media (max-width: 768px) {
+    .welcome-section {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start !important;
+    }
+
+    .edit-profile-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .account-cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .info-item.full-width {
+        grid-column: 1 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-section h1 {
+        font-size: 18px !important;
+    }
+
+    .card-value {
+        font-size: 24px !important;
+    }
+}
+
+/* Transactions Page Responsive */
+@media (max-width: 768px) {
+    .transactions-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start !important;
+    }
+
+    .transactions-header .flex {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .transactions-header button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ant-table {
+        font-size: 12px;
+    }
+
+    .ant-table-thead > tr > th {
+        padding: 10px 8px !important;
+        font-size: 11px;
+    }
+
+    .ant-table-tbody > tr > td {
+        padding: 10px 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .transactions-header h1 {
+        font-size: 18px !important;
+    }
+
+    .ant-pagination {
+        font-size: 12px;
+    }
+}
+
+/* Modal Responsive */
+@media (max-width: 576px) {
+    .ant-modal {
+        max-width: calc(100vw - 20px) !important;
+        margin: 10px auto !important;
+    }
+
+    .ant-modal-content {
+        border-radius: 16px !important;
+    }
+
+    .ant-modal-header {
+        padding: 16px !important;
+        border-radius: 16px 16px 0 0 !important;
+    }
+
+    .ant-modal-body {
+        padding: 16px !important;
+    }
+
+    .modal-title {
+        font-size: 16px !important;
+    }
+
+    .modal-title i {
+        font-size: 20px !important;
+    }
+
+    .deposit-icon-wrapper {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .deposit-icon-wrapper i {
+        font-size: 30px !important;
+    }
+
+    .modal-actions {
+        flex-direction: column !important;
+    }
+
+    .modal-cancel-btn,
+    .modal-confirm-btn {
+        width: 100% !important;
+    }
+
+    .logout-confirmation-modal .ant-modal-footer {
+        flex-direction: column !important;
+    }
+
+    .logout-confirmation-modal .ant-btn {
+        width: 100% !important;
+        margin-bottom: 8px;
+    }
+}
+
+/* Edit Profile Modal Responsive */
+@media (max-width: 576px) {
+    .edit-profile-modal .profile-tabs {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .edit-profile-modal .profile-form .form-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .edit-profile-modal-body {
+        padding: 16px !important;
+    }
+}
+
+/* Users Page Responsive */
+@media (max-width: 768px) {
+    .users-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start !important;
+    }
+
+    .users-header button {
+        width: 100%;
+    }
+}
+
+/* Table scrollbar styling */
+.ant-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.ant-table-wrapper::-webkit-scrollbar-track {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.ant-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+[data-theme='dark'] .ant-table-wrapper::-webkit-scrollbar-track {
+    background: var(--surface-hover);
+}
+
+[data-theme='dark'] .ant-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+}
+
