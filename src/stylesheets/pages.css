@@ -699,6 +699,38 @@
 }
 
 /* ========== Fancy Modal Styles (Deposit & Transfer) ========== */
+
+/* Fade animation for modals */
+.deposit-modal.ant-modal,
+.transfer-modal.ant-modal {
+    animation: modalFadeIn 0.3s ease;
+}
+
+.deposit-modal.ant-modal .ant-modal-mask,
+.transfer-modal.ant-modal .ant-modal-mask {
+    animation: maskFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes maskFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .deposit-modal .ant-modal-content,
 .transfer-modal .ant-modal-content {
     border-radius: 20px;

@@ -76,6 +76,8 @@ function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel
             maskClosable={!transferring}
             width={480}
             className="transfer-modal"
+            destroyOnClose={true}
+            centered
         >
             <div className="modal-content-wrapper">
                 <Form layout='vertical' form={form} onFinish={onFinish}>
