@@ -60,8 +60,8 @@ function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel
     }
 
   return (
-    <div>
-
+    <AnimatePresence>
+    {showTransferFundsModel && (
         <Modal
             title={
                 <div className="modal-title">
@@ -173,8 +173,8 @@ function TransferFundsModels( {showTransferFundsModel, setShowTransferFundsModel
                 </Form>
             </div>
         </Modal>
-
-    </div>
+    )}
+    </AnimatePresence>
   )
 }
 

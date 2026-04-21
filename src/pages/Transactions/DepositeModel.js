@@ -4,7 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import { useDispatch } from 'react-redux'
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice'
 import { DepositeFunds } from '../../apicalls/transactions'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
 
@@ -35,6 +35,8 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
     }
 
   return (
+    <AnimatePresence>
+    {showDepositeModal && (
     <Modal
         title={
             <div className="modal-title">
@@ -49,6 +51,7 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
         maskClosable={!depositing}
         width={450}
         className="deposit-modal"
+        afterClose={() => form.resetFields()}
     >
         <div className="modal-content-wrapper">
             <div className="deposit-icon-wrapper">
@@ -105,6 +108,8 @@ function DepositeModel({showDepositeModal,setShowDepositeModal,reloadData}) {
             </Form>
         </div>
     </Modal>
+    )}
+    </AnimatePresence>
   )
 }
 

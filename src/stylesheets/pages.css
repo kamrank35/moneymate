@@ -700,17 +700,17 @@
 
 /* ========== Fancy Modal Styles (Deposit & Transfer) ========== */
 
-/* Modal animation - fade in/out from trigger button */
+/* Modal animation - fade in/out with scale and translate */
 .deposit-modal .ant-modal,
 .transfer-modal .ant-modal {
-    animation: modalFadeUpDown 0.3s ease forwards;
+    animation: modalFadeInUp 0.3s ease forwards;
     transform-origin: center center;
 }
 
-@keyframes modalFadeUpDown {
+@keyframes modalFadeInUp {
     from {
         opacity: 0;
-        transform: scale(0.9) translateY(20px);
+        transform: scale(0.92) translateY(30px);
     }
     to {
         opacity: 1;
@@ -718,20 +718,18 @@
     }
 }
 
-/* When modal is closing (ant-modal-close class added) */
-.deposit-modal.ant-modal-close,
-.transfer-modal.ant-modal-close {
-    animation: modalFadeOutDown 0.3s ease forwards;
+/* Fade out animation */
+.deposit-modal .ant-modal-mask,
+.transfer-modal .ant-modal-mask {
+    animation: maskFadeIn 0.3s ease forwards;
 }
 
-@keyframes modalFadeOutDown {
+@keyframes maskFadeIn {
     from {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+        opacity: 0;
     }
     to {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
+        opacity: 1;
     }
 }
 
