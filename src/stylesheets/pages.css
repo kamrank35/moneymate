@@ -827,3 +827,111 @@
 [data-theme='dark'] .transfer-modal .ant-form-item-label > label {
     color: var(--text-primary);
 }
+
+/* ========== Edit Profile Modal ========== */
+.edit-profile-modal .ant-modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.edit-profile-modal .ant-modal-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 24px;
+    border-radius: 20px 20px 0 0;
+    border: none;
+}
+
+.edit-profile-modal .ant-modal-title {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.edit-profile-modal .ant-modal-body {
+    padding: 0;
+    background-color: var(--surface);
+}
+
+.edit-profile-modal .ant-modal-close {
+    color: white;
+    top: 20px;
+    right: 20px;
+}
+
+.edit-profile-modal-body {
+    padding: 24px;
+}
+
+.edit-profile-modal .profile-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.edit-profile-modal .tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: none;
+    background: var(--surface-hover);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.edit-profile-modal .tab-btn i {
+    font-size: 18px;
+}
+
+.edit-profile-modal .tab-btn:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
+
+.edit-profile-modal .tab-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.edit-profile-modal .profile-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.edit-profile-modal .disabled-input {
+    background: var(--surface-hover) !important;
+    color: var(--text-muted) !important;
+    cursor: not-allowed;
+}
+
+/* Overflow fixes for horizontal scrollbar */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+[data-theme='dark'] body {
+    background-color: var(--background);
+}
+
+/* Table responsive fixes */
+.ant-table-wrapper {
+    overflow-x: auto !important;
+}
+
+.ant-table {
+    min-width: 700px;
+}
