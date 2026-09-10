@@ -227,10 +227,10 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
 
         if (!emailResult.success) {
             console.error(`[OTP] Failed to send OTP email to ${user.email}:`, emailResult.error);
-            // Return error to user so they know email isn't configured
+            // Return the actual error from the email service to the user
             return res.send({
                 success: false,
-                message: "Failed to send OTP email. Please contact support or check server logs."
+                message: `Email Service Error: ${emailResult.error}. Please check your server logs or email settings.`
             });
         }
 
