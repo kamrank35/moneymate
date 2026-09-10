@@ -77,11 +77,11 @@ router.post('/login',async (req,res) => {
             data:token,
             success:true,   
         })
-        
+
     } catch (error) {
         res.send({
             message:error.message,
-            success:true,   
+            success:false,
         })
     }
 })
@@ -165,14 +165,6 @@ router.post('/update-profile', authMiddleware, async(req,res) => {
         const { userId } = req.body;
         const { firstName, lastName, phoneNumber, identificationType, identificationNumber, address } = req.body;
 
-        // Users can only update their own profile
-        if (userId !== req.body.userId) {
-            return res.send({
-                success: false,
-                message: "You can only update your own profile"
-            });
-        }
-
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             {
@@ -201,18 +193,9 @@ router.post('/update-profile', authMiddleware, async(req,res) => {
     }
 })
 
-// send OTP for password change
 router.post('/send-otp', authMiddleware, async(req,res) => {
     try {
         const { userId } = req.body;
-
-        // Users can only request OTP for themselves
-        if (userId !== req.body.userId) {
-            return res.send({
-                success: false,
-                message: "You can only request OTP for your own account"
-            });
-        }
 
         const user = await User.findById(userId);
         if (!user) {
@@ -224,6 +207,7 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
 
         // Generate 6-digit OTP
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log(`[OTP] Generated OTP ${otp} for user ${userId}`);
 
         // Delete any existing OTPs for this user and purpose
         await OTP.deleteMany({ userId, purpose: 'password_change' });
@@ -242,7 +226,7 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
         const emailResult = await sendOTPEmail(user.email, otp);
 
         if (!emailResult.success) {
-            console.error('Failed to send OTP email:', emailResult.error);
+            console.error(`[OTP] Failed to send OTP email to ${user.email}:`, emailResult.error);
             // Return error to user so they know email isn't configured
             return res.send({
                 success: false,
@@ -250,11 +234,13 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
             });
         }
 
+        console.log(`[OTP] Successfully sent OTP to ${user.email}`);
         res.send({
             success: true,
             message: "OTP sent successfully to your registered email"
         });
     } catch (error) {
+        console.error(`[OTP] Error in /send-otp:`, error);
         res.send({
             success: false,
             message: error.message
@@ -266,14 +252,7 @@ router.post('/send-otp', authMiddleware, async(req,res) => {
 router.post('/verify-otp', authMiddleware, async(req,res) => {
     try {
         const { userId, otp } = req.body;
-
-        // Users can only verify OTP for themselves
-        if (userId !== req.body.userId) {
-            return res.send({
-                success: false,
-                message: "You can only verify OTP for your own account"
-            });
-        }
+        console.log(`[OTP] Verifying OTP ${otp} for user ${userId}`);
 
         const otpRecord = await OTP.findOne({
             userId,
@@ -283,6 +262,7 @@ router.post('/verify-otp', authMiddleware, async(req,res) => {
         }).populate('userId');
 
         if (!otpRecord) {
+            console.log(`[OTP] OTP verification failed: No record found for user ${userId} with OTP ${otp}`);
             return res.send({
                 success: false,
                 message: "Invalid or expired OTP"
@@ -291,6 +271,7 @@ router.post('/verify-otp', authMiddleware, async(req,res) => {
 
         // Check if OTP is expired
         if (otpRecord.expiresAt < new Date()) {
+            console.log(`[OTP] OTP expired for user ${userId}`);
             await OTP.deleteOne({ _id: otpRecord._id });
             return res.send({
                 success: false,
@@ -308,12 +289,14 @@ router.post('/verify-otp', authMiddleware, async(req,res) => {
             { expiresIn: '10m' }
         );
 
+        console.log(`[OTP] OTP verified successfully for user ${userId}. Temp token issued.`);
         res.send({
             success: true,
             message: "OTP verified successfully",
             tempToken
         });
     } catch (error) {
+        console.error(`[OTP] Error in /verify-otp:`, error);
         res.send({
             success: false,
             message: error.message
@@ -326,25 +309,20 @@ router.post('/update-password', authMiddleware, async(req,res) => {
     try {
         const { userId, newPassword, tempToken } = req.body;
 
-        // Users can only update their own password
-        if (userId !== req.body.userId) {
-            return res.send({
-                success: false,
-                message: "You can only update your own password"
-            });
-        }
-
         // Verify temp token if provided (OTP-verified password change)
         if (tempToken) {
             try {
                 const decoded = jwt.verify(tempToken, process.env.jwt_secret);
                 if (decoded.userId !== userId || decoded.purpose !== 'password_change') {
+                    console.log(`[OTP] Password update failed: tempToken userId ${decoded.userId} does not match userId ${userId} or purpose is wrong`);
                     return res.send({
                         success: false,
                         message: "Invalid or expired verification token"
                     });
                 }
+                console.log(`[OTP] tempToken verified for user ${userId}`);
             } catch (error) {
+                console.error(`[OTP] tempToken verification error:`, error.message);
                 return res.send({
                     success: false,
                     message: "Invalid or expired verification token"
@@ -371,11 +349,13 @@ router.post('/update-password', authMiddleware, async(req,res) => {
 
         await User.findByIdAndUpdate(userId, { password: hashedPassword });
 
+        console.log(`[OTP] Password updated successfully for user ${userId}`);
         res.send({
             success: true,
             message: "Password updated successfully"
         });
     } catch (error) {
+        console.error(`[OTP] Error in /update-password:`, error);
         res.send({
             success: false,
             message: error.message
