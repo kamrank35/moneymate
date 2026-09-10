@@ -9,8 +9,7 @@ const createTransporter = () => {
         auth: {
             user: process.env.email_user,
             pass: process.env.email_password
-        },
-        connectionTimeout: 10000 // 10 seconds timeout
+        }
     };
 
     console.log('Email config:', {
