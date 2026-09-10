@@ -5,7 +5,7 @@ const createTransporter = () => {
     const config = {
         host: process.env.email_host || 'smtp.gmail.com',
         port: parseInt(process.env.email_port) || 587,
-        secure: false, // true for 465, false for other ports
+        secure: parseInt(process.env.email_port) === 465, // true for 465, false for others
         auth: {
             user: process.env.email_user,
             pass: process.env.email_password
